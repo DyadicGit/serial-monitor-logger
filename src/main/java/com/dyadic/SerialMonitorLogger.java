@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 public class SerialMonitorLogger {
     static public void main(String[] args) {
-        SerialPort comPort = SerialPort.getCommPorts()[2];
+        SerialPort comPort = SerialPort.getCommPorts()[1];
         comPort.openPort();
         comPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 1000, 0);
 
