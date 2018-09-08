@@ -12,13 +12,20 @@ import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class SerialMonitorLogger {
     static public void main(String[] args) {
-        SerialPort comPort = SerialPort.getCommPorts()[1];
+        var comPorts = SerialPort.getCommPorts();
+        Optional<SerialPort> port = Arrays.stream(comPorts)
+                .filter(serialPort -> serialPort.getDescriptivePortName()
+                        .equals("USB-SERIAL CH340 (COM6)")).findFirst();
+        var comPort = port.orElse(null);
         comPort.openPort();
-        comPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 1000, 0);
+        comPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 10000, 0);
 
         InputStream in = comPort.getInputStream();
         try {
