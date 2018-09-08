@@ -1,3 +1,5 @@
+package com.dyadic;
+
 import com.fazecast.jSerialComm.SerialPort;
 
 import java.io.BufferedWriter;
