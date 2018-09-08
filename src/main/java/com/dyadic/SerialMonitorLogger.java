@@ -18,7 +18,7 @@ public class SerialMonitorLogger {
     static public void main(String[] args) {
         SerialPort comPort = SerialPort.getCommPorts()[2];
         comPort.openPort();
-        comPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 1000*60*5, 0);
+        comPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 1000, 0);
 
         InputStream in = comPort.getInputStream();
         try {
